@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_warehouse_charge_tree" model="ir.ui.view">
+        <field name="name">warehouse.charge.tree</field>
+        <field name="model">warehouse.charge</field>
+        <field name="arch" type="xml">
+            <tree string="warehouse tree">
+                <field name="name" string="Charge Type"/>
+                <field name="currency_id" />
+                <field name="price" string="Charge Rate" widget="monetary" options="{'currency_field': 'currency_id'}" /> 
+            </tree>
+        </field>
+    </record>
+</odoo>

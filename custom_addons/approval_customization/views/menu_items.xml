@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="approval_purchase_request_view_form_inherit3" model="ir.ui.view">
+        <field name="name">approval.purchase.request.view.form.inherit4</field>
+        <field name="model">approval.request</field>
+        <field name="inherit_id" ref="approvals_purchase.approval_purchase_request_view_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_open_purchase_orders']" position="replace">
+                <field name="purchase_order_count" string="-Orders Request" widget="statinfo" invisible = '1' />
+                <button name="action_open_purchase_orders" type="object" 
+                    groups="approval_customization.group_approval_permission"
+                    class="oe_stat_button" icon="fa-credit-card" invisible="purchase_order_count != 0" 
+                    >
+                    <field name="purchase_order_count" string="Purchase Ordersssss" widget="statinfo"/>
+                </button>
+              
+            </xpath>
+
+
+            <xpath expr="//button[@name='action_get_attachment_view']" position="after">
+                <button name="action_open_purchase_orders" type="object"
+                    class="oe_stat_button" icon="fa-credit-card"
+                    invisible="purchase_order_count == 0" groups = 'approval_customization.group_approval_permission'>
+                    <field name="purchase_order_count" string="Purchase Orders Counts 001" widget="statinfo"/>
+                </button>
+                <button name="action_create_purchase_order_request_user" type="object"
+                    class="oe_stat_button" icon="fa-credit-card"
+                    invisible="purchase_order_count == 0" groups = 'approval_customization.group_approval_permission'>
+                    <field name="purchase_order_count" string="Purchase Orders Counts" widget="statinfo"/>
+                </button>
+            </xpath>
+            
+        </field>
+    </record>
+</odoo>

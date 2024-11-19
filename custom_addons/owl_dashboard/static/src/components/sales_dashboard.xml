@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="OwlSalesDashboard"  xml:space ="preserve">
+    <t t-name = "OwlSalesDashboard" owl='1'>
+        <h1>Custom Sales Dashboard</h1>
+    </t>
+</templates>

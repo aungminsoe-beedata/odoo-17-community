@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- <record id="view_purchase_order_tree_custom" model="ir.ui.view">
+        <field name="name">purchase.order.tree.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree//field[@name='state']" position="after">
+                <field name="receipt_state" options="{'color_field': 'receipt_state_color'}"/>
+            </xpath>
+        </field>
+    </record>
+     -->
+    <record id="view_purchase_order_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.request.approve</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='button_cancel']" position="replace">
+
+                <button name="button_cancel" 
+                    invisible="state not in ( 'purchase')" 
+                    string="Cancel" type="object" data-hotkey="x" />
+
+                <button 
+                    name="action_request_approve"
+                    string="Request Approve" type="object" 
+                    class="btn btn-warning"
+                    invisible="state not in('draft,sent')"
+                    
+                    />
+                <button 
+                    name="action_request_approve" 
+                    string="Request Again" type="object" 
+                    class="btn btn-success" 
+                    invisible="state != 'refused'"
+                    
+                    />
+                <button 
+                    name="action_request_refuse"  
+                    string="Reject" type="object" 
+                    class="btn btn-danger" 
+                    invisible="state != 'to approve'"
+                    groups="purchase.group_purchase_manager"
+                    />
+
+
+            </xpath>
+
+
+            <xpath expr="//button[@id='bid_confirm']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@id='draft_confirm']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field  name = 'class_name_po' readonly="1"/>
+                <field  name = 'refuse_reason' invisible="state != 'to approve'" 
+                        style="color: cyan;"
+                        readonly="1"/>
+                       
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                
+                <field  name = 'refuse_reason' invisible="state != 'refused'" 
+                        style="color: red;"
+                        readonly="1"/>
+                       
+            </xpath>
+
+
+        </field>
+    </record>
+    <record id="view_purchase_order_tree_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.tree.inherit.request.approve</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='activity_ids']" position="after">
+                <field name = 'class_name_po'/>
+                    <!-- <field name="picking_state_text" readonly="1"/> -->
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_tree_inherit2" model="ir.ui.view">
+        <field name="name">purchase.order.tree.inherit.request.approve1</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="before">
+                <field  name="picking_state_text" readonly="1"
+                        class="badge text-bg-info text-center"
+                       
+                        invisible="state not in ('purchase','done')" 
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_purchase_order_treeinherit" model="ir.ui.view">
+        <field name="name">purchase.order.tree.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="picking_state_text" readonly="1" invisible="state != 'purchase'"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_purchase_order_tree2" model="ir.ui.view">
+        <field name="name">purchase.order.tree.inherit2</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="picking_state_text" readonly="1"  invisible="state != 'purchase'"/>
+            </xpath>
+        </field>
+    </record>
+    
+    
+    
+</odoo>

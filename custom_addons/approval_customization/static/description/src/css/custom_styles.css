@@ -1,0 +1,15 @@
+/* static/src/css/custom_styles.css */
+
+.red-text {
+    color: red;
+}
+
+.o_purchase_order_state_waiting {
+    color: green !important;
+}
+
+.o_purchase_order_state_all_received {
+    color: red !important;
+}
+
+

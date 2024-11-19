@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- In your custom module's XML file -->
+
+
+<record id="view_picking_form_inherit" model="ir.ui.view">
+    <field name="name">stock.picking.form.inherit</field>
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.view_picking_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='partner_id']" position="before">
+            <field name="partner_name1"/>
+        </xpath>
+        <xpath expr="//field[@name='origin']" position="after">
+            <field name="ssr" readonly="1"/>
+            <field name="class_name_po" readonly="1"/>
+        </xpath>
+       
+    </field>
+</record>
+
+</odoo>

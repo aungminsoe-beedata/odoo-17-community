@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="group_approval_permission" model="res.groups">
+            <field name="name">Approval Purchase Orders Count Button Hide</field>
+            <field name="comment">You Tick This , Not Visiable Purchase Orders Count Button Of Approvals Form View</field>
+        </record>   
+
+        <record id="group_att_document_permission" model="res.groups">
+            <field name="name">Approval Attach Document Button Hide</field>
+            <field name="comment">You Tick This , Not Visiable Approval Attach Document Of Approvals Form View</field>
+        </record> 
+
+        <record id="group_att_cancel_permission" model="res.groups">
+            <field name="name">Approval Cancel Button Hide</field>
+            <field name="comment">You Tick This , Not Visiable Approval Cancel Button Of Approvals Form View</field>
+        </record> 
+        
+    </data>
+
+</odoo>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_warehouse_line_customization_tree" model="ir.ui.view">
+        <field name="name">warehouse.product.line.tree</field>
+        <field name="model">warehouse.product.line</field>
+        <field name="arch" type="xml">
+            
+                <tree string="Product Lines">
+
+                    <field name ="customer" string="Customer"  
+                    readonly="states in ('done', 'cancel')" decoration-it ="states == 'done'"/>
+                    <field name="name" readonly="states in ('done', 'cancel')"/>
+                    <field name="warehouse_location" string="Warehouses" readonly="states in ('done', 'cancel')"/>
+                    <field name ="lot_stock_id" string="Locations" readonly="states in ('done', 'cancel')"/>
+                    <!-- <field name ="name" string="Descriptons" readonly="states in ('done', 'cancel')"/> -->
+
+                    <field name="states" string="State" widget="badge" 
+                    readonly="states in ('done', 'cancel')"
+                    decoration-success="states == 'done'" />
+                    <field name ="charge_type" string="Charge Type"  optional="hide"
+                    readonly="states in ('done', 'cancel')"/>
+                    <field name ="charge_rate" string="Charge Rates"  
+                    readonly="states in ('done', 'cancel')"/>
+                    
+                    <field name ="contact_date" string="contact_date"  optional="hide"
+                    readonly="states in ('done', 'cancel')"/>
+                    <field name ="receive_date" string="receive_date"  optional="hide"
+                    readonly="states in ('done', 'cancel')"/>
+
+                </tree>
+                </field>
+    </record>
+
+
+    <record id="view_warehouse_line_customization_search" model="ir.ui.view">
+        <field name="name">warehouse.product.line.search</field>
+        <field name="model">warehouse.product.line</field>
+        <field name="arch" type="xml">
+            
+                <search  string="warehouse line search">
+
+
+                    <field name="customer" />
+                    <field name="name" />
+                    <field name="warehouse_location" string="WH" />
+
+
+                </search>
+                </field>
+    </record>
+
+  
+
+    <record id="view_warehouse_customization_form" model="ir.ui.view">
+        <field name="name">warehouse.customization.form</field>
+        <field name="model">warehouse.customization</field>
+        <field name="arch" type="xml">
+            <form string="Warehouse Customization">
+                <header>
+                    <field name="state" statusbar_visible="draft,ready,done" widget="statusbar"/>
+                    
+                    <button name="action_draft"
+                        string="Ready"
+                        class="oe_highlight"
+                        type="object"
+                        invisible="state != 'draft'"/>
+                    
+                    <button name="action_search"
+                            string="Done"
+                            class="oe_highlight"
+                            type="object" invisible="state != 'ready'"/>
+                    <button name="action_cancel"
+                            string="Cancel"
+                            class="btn btn-secondary"
+                            type="object" invisible="state != 'ready'"/>
+                    <button name="action_set_draft"
+                            string="Set To Draft"
+                            class="btn btn-secondary"
+                            type="object" invisible="state != 'cancel'" />
+                    
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1 class="d-flex">
+                            <field name="name" string="Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="customer" string="Customer Name" placeholder="Enter Customer Name" 
+                                   readonly="state in ('done', 'cancel')" decoration-bf="1"/>
+                            <field name="contract_date" string="Contract Date" readonly="state in ('done', 'cancel')"/>
+                        </group>
+                        <group>
+                            <field name="charge_type" string="Charge Type" readonly="state in ('done', 'cancel')"/>
+                            <field name="charge_rate" string="Charge Rate" widget="monetary" 
+                                   options="{'currency_field': 'currency_id'}" readonly="state in ('done', 'cancel')"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="receive_date" string="Receive Date" readonly="state in ('done', 'cancel')"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Warehouse">
+                            <field name="product_line_ids">
+                                <tree string="Product Lines" editable="bottom"
+                                    widget="section_and_note_one2many"
+                                    mode="tree"
+                                    limit="200">
+                                    <control>
+                                        <create name="add_line_control" string="Add a line" readonly="states in ('done', 'cancel')" />
+                                    </control>
+
+                                    <field name="name" readonly="states in ('done', 'cancel')" />
+                                    <field name="warehouse_location" string="Warehouses" readonly="states in ('done', 'cancel')"/>
+                                    <field name ="lot_stock_id" string="Locations" readonly="states in ('done', 'cancel')"/>
+                                    <field name ="picking_type" string="WH Receipts" optional="hide"/>
+
+                                    <field name="states" string="State" widget="badge" 
+                                    readonly="states in ('done', 'cancel')"
+                                    decoration-success="states == 'done'" optional="hide"/>
+                                    <field name ="charge_type" string="Charge Type"  optional="hide"
+                                    readonly="states in ('done', 'cancel')"/>
+                                    <field name ="charge_rate" string="Charge Rates"  optional="hide"
+                                    readonly="states in ('done', 'cancel')"/>
+                                    <field name ="customer" string="Customer"  optional="hide"
+                                    readonly="states in ('done', 'cancel')"/>
+                                    <field name ="contact_date" string="contact_date"  optional="hide"
+                                    readonly="states in ('done', 'cancel')"/>
+                                    <field name ="receive_date" string="receive_date"  optional="hide"
+                                    readonly="states in ('done', 'cancel')"/>
+
+
+                                </tree>
+                                <form>
+                                    <group>
+                                        <control>
+                                            <create name="add_line_control" string="Add a line" readonly="states in ('done', 'cancel')" />
+                                        </control>
+    
+                                        <field name="name" readonly="states in ('done', 'cancel')"/>
+                                        <field name="warehouse_location" string="Warehouses" readonly="states in ('done', 'cancel')"/>
+                                        <field name ="lot_stock_id" string="Locations" readonly="states in ('done', 'cancel')"/>
+                                        <field name ="picking_type" string="WH Receipts"  />
+    
+                                        <field name="states" string="State" widget="badge" 
+                                        readonly="states in ('done', 'cancel')"
+                                        decoration-success="states == 'done'" optional="hide"/>
+                                        <field name ="charge_type" string="Charge Type"  optional="hide"
+                                        readonly="states in ('done', 'cancel')"/>
+                                        <field name ="charge_rate" string="Charge Rates"  optional="hide"
+                                        readonly="states in ('done', 'cancel')"/>
+                                        <field name ="customer" string="Customer"  optional="hide"
+                                        readonly="states in ('done', 'cancel')"/>
+                                        <field name ="contact_date" string="contact_date"  optional="hide"
+                                        readonly="states in ('done', 'cancel')"/>
+                                        <field name ="receive_date" string="receive_date"  optional="hide"
+                                        readonly="states in ('done', 'cancel')"/>
+    
+    
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo>

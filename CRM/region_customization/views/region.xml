@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_region_in_config" name="Region" parent="account.menu_finance_configuration"
+                  groups="account.group_account_invoice" sequence="7"/>
+
+<!--        city menu-->
+        <record id="cuz_city_form" model="ir.ui.view">
+            <field name="name">cuz.city.form</field>
+            <field name="model">city</field>
+            <field name="arch" type="xml">
+                <form string="City">
+                    <sheet>
+                        <group>
+                            <field name="name" required="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+<!--        <record id="view_city_tree" model="ir.ui.view">-->
+<!--            <field name="name">city.tree</field>-->
+<!--            <field name="model">city</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree>-->
+<!--                    <field name="name"/>-->
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+<!--        <record id="city_menu_action" model="ir.actions.act_window">-->
+<!--            <field name="name">City</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model">city</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--            <field name="help" type="html">-->
+<!--                <div t-name="activity-box">-->
+<!--                    <p class="o_view_nocontent_smiling_face">-->
+<!--                        Create City!-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--            </field>-->
+<!--        </record>-->
+<!--        <menuitem id="menu_city" name="City" parent="menu_region_in_config"-->
+<!--                  action="city_menu_action" sequence="1"/>-->
+
+
+<!--        state menu-->
+        <record id="cuz_state_form" model="ir.ui.view">
+            <field name="name">cuz.state.form</field>
+            <field name="model">state</field>
+            <field name="arch" type="xml">
+                <form string="State/Region">
+                    <sheet>
+                        <group>
+                            <field name="name" required="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_state_tree" model="ir.ui.view">
+            <field name="name">state.tree</field>
+            <field name="model">state</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="state_menu_action" model="ir.actions.act_window">
+            <field name="name">State/Region</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">state</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <div t-name="activity-box">
+                    <p class="o_view_nocontent_smiling_face">
+                        Create State!
+                    </p>
+                </div>
+            </field>
+        </record>
+        <menuitem id="menu_state" name="State/Region" parent="menu_region_in_config"
+                  action="state_menu_action" sequence="2"/>
+
+
+<!--        township menu-->
+        <record id="cuz_township_form" model="ir.ui.view">
+            <field name="name">cuz.township.form</field>
+            <field name="model">township</field>
+            <field name="arch" type="xml">
+                <form string="Township">
+                    <sheet>
+                        <group>
+                             <field name="state_id" required="1"/>
+                            <field name="name" required="1"/>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_township_tree" model="ir.ui.view">
+            <field name="name">township.tree</field>
+            <field name="model">township</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                     <field name="state_id" required="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="township_menu_action" model="ir.actions.act_window">
+            <field name="name">Township</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">township</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <div t-name="activity-box">
+                    <p class="o_view_nocontent_smiling_face">
+                        Create Township!
+                    </p>
+                </div>
+            </field>
+        </record>
+        <menuitem id="menu_township" name="Township" parent="menu_region_in_config"
+                  action="township_menu_action" sequence="3"/>
+
+    </data>
+</odoo>

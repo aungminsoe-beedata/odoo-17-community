@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ?  Good Receive Notes sequence-->
+        <record id="wms_sequence1" model="ir.sequence">
+            <field name="name">Warehouse Sequences</field>
+            <field name="code">warehouse.customization</field>
+            <field name="prefix">GRN</field>
+            <field name="padding">6</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
+        <!-- ? Charge Notes sequence-->
+        <record id="charge_notes_sequence" model="ir.sequence">
+            <field name="name">Charge Notes Sequences</field>
+            <field name="code">warehouse.charge.note</field>
+            <field name="prefix">CN-</field>
+            <field name="padding">6</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
+
+    </data>
+
+</odoo>

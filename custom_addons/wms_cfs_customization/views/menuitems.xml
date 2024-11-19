@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="warehouse_view" model="ir.actions.act_window">
+        <field name="name">WareHouse</field>
+        <field name="res_model">warehouse.customization</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <section class="home_banner_area o_view_nocontent_smiling_face o_form_view">
+                <div class="banner_inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="banner_content text-center">
+                                    <h2 class="text-uppercase mt-4 mb-5">
+                                        Create New
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </field>
+    </record>
+
+    <record id="warehouse_charge_view" model="ir.actions.act_window">
+        <field name="name">WareHouse Charge</field>
+        <field name="res_model">warehouse.charge</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <section class="home_banner_area o_view_nocontent_smiling_face o_form_view">
+                <div class="banner_inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="banner_content text-center">
+                                    <h2 class="text-uppercase mt-4 mb-5">
+                                        Create New Charge Rate And Charge Type
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </field>
+    </record>
+
+    <record id="warehouse_managemnet" model="ir.actions.act_window">
+        <field name="name">WareHouse Management</field>
+        <field name="res_model">stock.picking.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <section class="home_banner_area o_view_nocontent_smiling_face o_form_view">
+                <div class="banner_inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="banner_content text-center">
+                                    <h2 class="text-uppercase mt-4 mb-5">
+                                        Create New Charge Rate And Charge Type
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </field>
+    </record>
+
+
+    <record id="warehouse_charge_note" model="ir.actions.act_window">
+        <field name="name">Warehouse Charge Notes</field>
+        <field name="res_model">warehouse.charge.note</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <section class="home_banner_area o_view_nocontent_smiling_face o_form_view">
+                <div class="banner_inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="banner_content text-center">
+                                    <h2 class="text-uppercase mt-4 mb-5">
+                                        Create Charge Notes
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </field>
+    </record>
+
+ 
+
+    <!-- Define the main warehouse menu first -->
+    <menuitem id="main_warehouse_menu" name="Warehouse Management" sequence="1"/>
+
+    <menuitem id="stock.menu_warehouse1"
+              name="Configuration" sequence="6"
+              parent="main_warehouse_menu"/>
+
+    <menuitem id="stock.menu_warehousec_confi"
+              name="Charge Type And Rate" sequence="1"
+              parent="stock.menu_warehouse1"/>
+
+    <menuitem id="stock.menu_warehousec"
+              name="Charge And Rate" sequence="1"
+              parent="stock.menu_warehousec_confi"
+              action="warehouse_charge_view"/>
+
+    <menuitem id="warehouse_view_menu" name="Warehouse Management"
+              parent="main_warehouse_menu" sequence="3" action="warehouse_view"/>
+              
+    <!-- Charge Note -->
+    <menuitem id="charge_note_view_menu" name="Charge Notes"
+              parent="main_warehouse_menu" sequence="4" action="warehouse_charge_note"/>
+
+
+
+    <record id="group_my_custom_inventory_group" model="res.groups">
+        <field name="name">My Custom Inventory Group</field>
+    </record>
+        
+    <menuitem id="stock.menu_stock_adjustments" name="Adjustments" parent="stock.menu_stock_warehouse_mgmt" sequence="2" groups="wms_cfs_customization.group_my_custom_inventory_group"/>
+    <menuitem id="stock.menu_stock_procurement" name="Procurement" parent="stock.menu_stock_warehouse_mgmt" sequence="3" groups="wms_cfs_customization.group_my_custom_inventory_group"/>
+    <menuitem action="stock.action_procurement_compute" id="stock.menu_procurement_compute" parent="stock.menu_stock_procurement"/>
+
+</odoo>

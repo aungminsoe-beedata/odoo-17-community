@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_warehouse.customization,warehouse.customization,model_warehouse_customization,base.group_user,1,1,1,1
+access_warehouse.charge,warehouse.charge,model_warehouse_charge,base.group_user,1,1,1,1
+access_stock.picking.type,stock.picking.type,model_stock_picking_type,base.group_user,1,1,1,1
+access_warehouse_product_line,access.warehouse.product.line,model_warehouse_product_line,,1,1,1,1
+access_warehouse_charge_note,access.warehouse.charge.note,model_warehouse_charge_note,,1,1,1,1
+access_product_line_warning_wizard,access.product.line.warning.wizard,model_product_line_warning_wizard,,1,1,1,1
+
+stock.access_stock_picking_manager,stock.picking manager,stock.model_stock_picking,stock.group_stock_manager,1,0,0,0
+

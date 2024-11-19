@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_warehouse_charge_note_tree" model="ir.ui.view">
+        <field name="name">warehouse.charge.note.tree</field>
+        <field name="model">warehouse.charge.note</field>
+        <field name="arch" type="xml">
+            <tree string="warehouse charge note tree">
+                <field name="name" />
+                <field name="GRN_name"/>
+                <field name="charged_date"/>
+                <field name="state" string="State" widget="badge"  
+                decoration-success="state == 'confirm'" 
+                decoration-info="state == 'draft'" 
+                decoration-danger="state == 'cancel'" 
+                optional="show"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

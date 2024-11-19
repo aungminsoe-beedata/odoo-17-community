@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    
+    <record id="res_partner_customizations_form" model="ir.ui.view">
+            
+        <field name="name">approvals.approval_request_view_form.inherit</field>   
+        <field name="model">approval.request</field>
+        <field name="inherit_id" ref="approvals.approval_request_view_form"/>
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+                
+                <field name="department_name"/>
+               
+               
+            </field>
+        </field>
+        
+    </record>
+
+    <record model="ir.actions.act_window" id="class_name_creation">
+        <field name="name">Class Name Creation</field>
+        <field name="res_model">school.classname</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            
+            <section class="home_banner_area o_view_nocontent_smiling_face o_form_view ">
+                <div class="banner_inner">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="banner_content text-center">
+                            <h2 class="text-uppercase mt-4 mb-5 ">
+                                Create New Class 
+                            </h2>
+                            <div class="text-uppercase">
+                                Better Education,Greater Opportunities
+                            </div>
+                            <div class="animate__animated animate__fadeInUp">
+                                To get started, create your first class. Each class must have one teacher, and a teacher can be assigned to one or more classes.
+                            </div>
+                            
+                         
+                         
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+        </field>
+    </record>
+    
+
+    <menuitem id="classname_creation" parent="approvals.approvals_menu_root"
+     sequence="40" name="Class Name" action='class_name_creation'/>
+
+   
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="group_biometic_permission" model="res.groups">
+            <field name="name">Create Access Inventory</field>
+        </record>
+    </data>
+
+</odoo>

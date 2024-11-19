@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+    <template id="payment_delivery_methods_custom">
+        <input class="pe-none"
+           t-att-value="delivery.id" 
+           t-att-id="delivery.product_id.categ_id.name"
+           t-att-delivery_type="delivery.delivery_type"
+           type="radio"
+           name="delivery_type"
+           t-att-checked="order.carrier_id and order.carrier_id.id == delivery.id and 'checked' or False"
+           style="accent-color: green; /* For modern browsers */"
+           />   <t t-if= "delivery.product_id.categ_id.name">
+        <label class="label-optional" t-field="delivery.name"/>
+    </t>
+        <span class="o_wsale_delivery_badge_price float-end fw-bold" name="price">Select to compute delivery rate</span>
+        <t t-set='delivery_method' t-value="delivery.delivery_type+'_use_locations'" />
+        <div class="small">
+            <div class="d-none">
+                <span class="o_order_location">
+                    <b class="o_order_location_name"/>
+                    <br/>
+                    <i class="o_order_location_address"/>
+                </span>
+                <span class="fa fa-times ms-2 o_remove_order_location" aria-label="Remove this location" title="Remove this location"/>
+            </div>
+            <t t-if="delivery_method in delivery.fields_get() and delivery[delivery_method]">
+                <div class="o_show_pickup_locations"/>
+                <div class="o_list_pickup_locations"/>
+            </t>
+        </div>
+        <t t-if="delivery.website_description">
+            <div t-field="delivery.website_description" class="text-muted mt8"/>
+        </t>
+    </template>
+    </data>
+</odoo>

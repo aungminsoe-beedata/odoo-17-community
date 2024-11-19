@@ -1,0 +1,47 @@
+<odoo>
+    <template id="payment_delivery_custom" name="Custom Delivery Costs" inherit_id="website_sale.payment">
+        <xpath expr="//div[@id='delivery_method']" position="replace">
+            <div id="delivery_method" class="container">
+                <!-- Container for buttons -->
+                <div class="row">
+                    <t t-set="unique_buttons" t-value="[]"/>
+                    <t t-foreach="deliveries" t-as="delivery">
+                        <t t-if="not delivery.product_id.categ_id.name in unique_buttons">
+                            <div class="col-12 col-md-6 col-lg-4 mb-2">
+                                <button 
+                                    class="dynamic-button btn btn-outline-success w-100 border border-dark" 
+                                    t-att-value="delivery.id" 
+                                    t-att-id="delivery.product_id.categ_id.name"
+                                    t-att-delivery_type="delivery.delivery_type"
+                                    style = 'color:black;'
+                                >
+                                    <t t-esc="delivery.product_id.categ_id.name"/>
+                                </button>
+                            </div>
+                            <t t-set="unique_buttons" t-value="unique_buttons + [delivery.product_id.categ_id.name]"/>
+                        </t>
+                    </t>
+                </div>
+            </div>
+            
+            <br></br>
+            <div class="list-container">
+                
+                <ul class="list-group list-group-flush "  >
+                    <t t-foreach="deliveries" t-as="delivery">
+                        <li class="
+                        list-group-item text-dark list-group-item-action o_delivery_carrier_select" 
+                            t-att-id="delivery.product_id.categ_id.name" style="display:none;"
+                        > 
+                        <!-- (<t t-esc="delivery.product_id.categ_id.name"/>) -->
+                        <t t-call="cf_website_customization.payment_delivery_methods_custom"/>
+                            
+                        </li>
+                        
+                    </t>
+                </ul>
+            
+            </div>
+        </xpath>
+    </template>
+</odoo>

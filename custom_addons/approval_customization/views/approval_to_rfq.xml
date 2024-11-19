@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="approval_purchase_request_view_form_inherit" model="ir.ui.view">
+        <field name="name">approval.purchase.request.view.form.inherit</field>
+        <field name="model">approval.request</field>
+        <field name="inherit_id" ref="approvals.approval_request_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_confirm']" position="before">
+                <button name="action_create_purchase_order_request_user" type="object"
+                    string="Request Order" class="btn-primary" invisible="request_status != 'new'"/>
+            </xpath>
+            
+            <!-- Attach Document widget hide base on user permission-->
+            <xpath expr="//widget[@name='attach_document'][2]" position="replace">
+                 <widget name="attach_document" 
+                        groups = 'approval_customization.group_att_document_permission'
+                        string="Attach Document" action="message_post" highlight="1" invisible="attachment_number &gt;= 1"/> 
+            </xpath>
+
+           
+        </field>
+    </record>
+</odoo>
